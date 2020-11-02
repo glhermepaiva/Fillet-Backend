@@ -4,7 +4,7 @@
   "description": "Repositório para a parte Backend do teste Full-Stack da Fillet",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
+    "start": "tsc && node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
