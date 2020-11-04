@@ -15,7 +15,7 @@ export abstract class BaseDatabase {
           password: process.env.DB_PASSWORD,
           database: process.env.DB_NAME,
         }
-      })
+      });
     }
     return BaseDatabase.connection
   }

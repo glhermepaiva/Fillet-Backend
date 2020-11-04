@@ -1,4 +1,5 @@
-import { BaseDatabase } from "./BaseDatabase";
+import { User } from "../model/User"
+import { BaseDatabase } from "./BaseDatabase"
 
 export class UserDatabase extends BaseDatabase {
   private static TABLE_NAME = "Fillet_Users"
@@ -16,9 +17,20 @@ export class UserDatabase extends BaseDatabase {
       .insert({
         id, firstName, lastName, phone, email, password
       })
-      .into(UserDatabase.TABLE_NAME)
+      .into(UserDatabase.TABLE_NAME);
     } catch (error) {
-      throw new Error(error.sqlMessage || error.message)  
+      throw new Error(error.sqlMessage || error.message);
     }
+  }
+
+  public async getUserInfoById(
+    id: string
+  ): Promise<User> {
+    const result = await this.getConnection()
+    .raw(`
+          SELECT * FROM ${UserDatabase.TABLE_NAME}
+          WHERE ID = "${id}"
+    `);
+    return (result[0][0]);
   }
 }
